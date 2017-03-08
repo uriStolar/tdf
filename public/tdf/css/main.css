@@ -1,0 +1,25 @@
+.noBorder {
+  border: 0px !important;
+  border-style: none !important;
+}
+
+.noBoxShadow {
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.imgAlign {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: middle;
+}
+
+.imgDiv {
+  text-align: center;
+}
+
+.justify{
+  text-align: justify;
+}
