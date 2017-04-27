@@ -16,7 +16,11 @@ app.get('/', function(req, res) {
 
 app.get('/tdf', function (req, res) {
   res.sendFile('/tdf/index.html');
-})
+});
+
+app.get('/consejo', function (req, res) {
+  res.sendFile('/consejo/index.html');
+});
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
