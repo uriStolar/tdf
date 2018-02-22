@@ -1,0 +1,162 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Test Driven Development</title>
+    <meta name="author" content="Uri Stolar">
+    <meta name="description" content="TDD Presentation/Workshop">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/zenburn.css">
+    <link rel="stylesheet" href="../css/reveal.css">
+    <link rel="stylesheet" href="../css/theme/solarized.css">
+    <script src="../js/head.load.min.js"></script>
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '../css/print/pdf.css' : '../css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    <!--[if lt IE 9]>
+    <script src="../lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+            <h1>TDD en Js</h1>
+            <!-- <h3>con Mocha, Chai y Sinon</h3> -->
+            <img src="../assets/test-expected.gif" class="noBorder noBoxShadow">
+            <p><small>por Uri Stolar</p></small>
+        </section>
+        <section>
+          <h3>Contenido</h3>
+          <ul>
+            <li><a href="#/intro">Introducción</a></li>
+            <li><a href="#/tools">Herramientas</a></li>
+            <li><a href="#/demo">Demo</a></li>
+          </ul>
+        </section>
+        <section id="intro"><h2>Introducción</h2></section>
+        <section class="justify">
+          <h3>¿Qué es TDD?</h3>
+          <p class="fragment">Test Driven Development o desarrollo orientado/guiado por pruebas.</p>
+          <p class="fragment">Es una práctica del desarrollo de software.</p>
+          <p class="fragment">Requerimientos ➡️ Casos en prueba unitaria ➡️ Escribir código necesario</p>
+          <p class="fragment">Red. Green. Refactor.</p>
+        </section>
+        <section>
+          <h3>Ciclo de vida de TDD</h3>
+          <div class="imgDiv">
+            <img class="imgAlign noBorder noBoxShadow" src="../assets/red-green-refactor.png" alt="Ciclo de vida de TDD">
+          </div>
+        </section>
+        <section class="justify">
+          <h3>Pruebas Unitarias</h3>
+          <p class="fragment">Código que prueba el código.</p>
+          <p class="fragment">Prueban una unidad de código (funciones, clases, módulos, etc.).</p>
+          <p class="fragment">Un módulo en un determinado proyecto requiere su propio conjunto de pruebas unitarias.</p>
+        </section>
+        <section class="justify">
+          <h3>¿Porqué?</h3>
+          <p class="fragment">Las pruebas unitarias ahorran 🕓, 💵 y 🆘.</p>
+          <p class="fragment">Documentan el código.</p>
+          <p class="fragment">Mejor diseño, menos 🐞s.</p>
+          <p class="fragment">Podemos hacer cosas interesantes con pruebas unitarias.</p>
+        </section>
+        <section id="tools"><h2>Herramientas</h2></section>
+        <section class="justify">
+          <h3>Testing Frameworks y Test Runners</h3>
+          <ul class="fragment">
+            <li><a href="https://jasmine.github.io">Jasmine</a> (BDD test framework)</li>
+            <li><a href="https://mochajs.org">Mocha</a> (Testing framework for JavaScript)</li>
+            <li><a href="https://https://facebook.github.io/jest/">Jest</a> (snapshot based test framework)</li>
+            <li><a href="https://karma-runner.github.io/">Karma</a> (browser based test runner)</li>
+            <li><a href="http://www.protractortest.org/">Protractor</a> (e2e tests for AngularJS & Angular).</li>
+            <p>etc...</p>
+          </ul>
+        </section>
+        <section class="justify">
+          <h3>Diferencias</h3>
+          <ul class="fragment">
+            <li>Jasmine ya tiene assertions, mocks, spies y stubs out of the box, a diferencia de Chai</li>
+            <li>El testing basado en snapshots de Jest es completamente distinto a Jasmine/Mocha.</li>
+            <li>Sintaxis</li>
+          </ul>
+          <pre class="noBoxShadow fragment">
+            <strong>Jasmine</strong>
+            <code data-trim data-noescape>
+              expect(form.validEmail).toEqual('test.email@mail.com');
+            </code>
+            <strong>Mocha</strong>
+            <code data-trim data-noescape>
+              expect(form.validEmail).to.equal('test.email@mail.com');
+            </code>
+          </pre>
+        </section>
+        <section class="justify ">
+            <h3>Diferencias</h3>
+            <pre class="noBoxShadow">
+              <strong>Jasmine Spy</strong>
+              <code data-trim data-noescape>
+                  this.spy = spyOn(countryDB, 'isValidCountry').andCallThrough();
+                  it('should have been called', function(done){
+                    expect(this.spy.callCount).toEqual(0);
+                    done();
+                  });
+              </code>
+              <strong>Mocha + Sinon Spy</strong>
+              <code data-trim data-noescape>
+                  sinon.spy(countryDB, 'isValidCountry');
+                  it('should have been called', function(){
+                    expect(countryDB.isValidCountry.notCalled);
+                  });
+              </code>
+            </pre>
+          </section>
+        <section class="justify">
+          <h3>Assertion Libraries</h3>
+          <ul class="fragment">
+            <li><a href="http://chaijs.com/">Chai</a> (BDD/TDD asssert lib)</li>
+            <li><a href="https://nodejs.org/api/assert.html">Assert</a> (API by Node)</li>
+            <li><a href="https://github.com/shouldjs/should.js">Should.js</a> (BDD Style assert lib)</li>
+        </section>
+        <section class="justify">
+          <h3>Diferencias</h3>
+
+        </section>
+        <section class="justify">
+          <h3>Test doubles & utils</h3>
+          <ul class="fragment">
+            <li><a href="http://sinonjs.org/">Sinon.js</a> (testing spies, stubs & mocks)</li>
+            <li><a href="http://airbnb.io/enzyme/">Enzyme</a> (testing utils for React)</li>
+            <li><a href="https://istanbul.js.org/">Istanbul.js</a> (test coverage util)</li>
+          </ul>
+        </section>
+        <section class="justify">
+          <h3>Spy</h3>
+          <p class="fragment">Podemos utilizar el Spy para probar la implementación de funciones existentes y utilizar assertions para probar su ejecución (cuántas veces fue llamada, sus argumentos, valores de retorno, errores arrojados,etc).</pcl>
+        </section>
+        <section class="justify">
+          <h3>Stub</h3>
+          <p class="fragment">Con los stubs podemos probar una función existente reemplazando su implementación por lo que deseemos, como valores de retorno o errores arrojados.</p>
+        </section>
+        <section class="justify">
+          <h3>Mock</h3>
+          <p class="fragment">Con los mocks podemos verificar múltiples comportamientos específicos, definiéndolos y luego verificándolos, a diferencia de los stubs.</p>
+        </section>
+        <section id="demo"><h2>Demo</h2><img src="../assets/cathack.gif" class="noBorder noBoxShadow" style="height:auto;max-width:400px;"></section>
+        <section id="questions"><h2>¿Preguntas?</h2></section>
+        <section id="thx"><h2>¡Gracias!</h2></section>
+      </div>
+    </div>
+    <script src="../js/reveal.min.js"></script>
+    <script>
+      Reveal.initialize({controls: false, dependencies: [{src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },]});
+    </script>
+  </body>
+</html>
