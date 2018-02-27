@@ -123,12 +123,53 @@
           <ul class="fragment">
             <li><a href="http://chaijs.com/">Chai</a> (BDD/TDD asssert lib)</li>
             <li><a href="https://nodejs.org/api/assert.html">Assert</a> (API by Node)</li>
+            <li><a href="https://github.com/Automattic/expect.js">Expect.js</a></li> (BDD Style assert lib)</li>
             <li><a href="https://github.com/shouldjs/should.js">Should.js</a> (BDD Style assert lib)</li>
         </section>
         <section class="justify">
           <h3>Diferencias</h3>
+          <pre class="noBoxShadow">
+            <strong>Expect</strong>
+            <code data-trim data-noescape>
+                var expect = require('chai').expect //referencia
+                  , foo = 'bar'
+                  , bebidas = { tes: [ 'chai', 'matcha', 'oolong' ] };
 
+                expect(foo).to.be.a('string');
+                expect(foo).to.equal('bar');
+                expect(foo).to.have.lengthOf(3);
+                expect(bebidas).to.have.property('tes').with.lengthOf(3);
+            </code>
+            <strong>Should</strong>
+            <code data-trim data-noescape>
+                var should = require('chai').should() //hay que llamar a la fn
+                , foo = 'bar'
+                , bebidas = { tes: [ 'chai', 'matcha', 'oolong' ] };
+              
+                foo.should.be.a('string');
+                foo.should.equal('bar');
+                foo.should.have.lengthOf(3);
+                bebidas.should.have.property('tes').with.lengthOf(3);              
+            </code>
+          </pre>
         </section>
+        <section class="justify">
+            <h3>Diferencias</h3>
+            <pre class="noBoxShadow">
+              <strong>Assert</strong>
+              <code data-trim data-noescape>
+                  var assert = require('chai').assert
+                    , foo = 'bar'
+                    , bebidas = { tes: [ 'chai', 'matcha', 'oolong' ] };
+
+                  assert.typeOf(foo, 'string'); // sin msg
+                  assert.typeOf(foo, 'string', 'foo es string'); // con msg
+                  assert.equal(foo, 'bar', 'foo = `bar`');
+                  assert.lengthOf(foo, 3, 'el valor de foo tiene longitud 3');
+                  assert.lengthOf(bebidas.tes, 3, 'bebidas tiene 3 tipos de tés');
+              </code>
+            </pre>
+          </section>
         <section class="justify">
           <h3>Test doubles & utils</h3>
           <ul class="fragment">
@@ -139,7 +180,7 @@
         </section>
         <section class="justify">
           <h3>Spy</h3>
-          <p class="fragment">Podemos utilizar el Spy para probar la implementación de funciones existentes y utilizar assertions para probar su ejecución (cuántas veces fue llamada, sus argumentos, valores de retorno, errores arrojados,etc).</pcl>
+          <p class="fragment">Podemos utilizar el Spy para probar la implementación de funciones existentes y utilizar assertions para probar su ejecución,consultar cuántas veces fue llamada o con qué argumentos.</pcl>
         </section>
         <section class="justify">
           <h3>Stub</h3>
